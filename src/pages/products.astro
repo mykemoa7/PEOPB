@@ -6,9 +6,10 @@ export const prerender = true;
 const productLines = [
 	{
 		name: "Aseda Church Suite",
-		copy: "The operating system for the modern church, membership, worship, finance, and community in one suite.",
+		copy: "The operating system for the modern church, membership, worship, finance, and community in one suite. Guanhwɛfo is the backbone every other application connects to, not one of five equal tiles.",
 		status: "Live",
 		statusClass: "text-live bg-live-tint",
+		exploreUrl: "https://asedachurchsuite.com",
 	},
 	{
 		name: "BillFlow",
@@ -21,34 +22,6 @@ const productLines = [
 		copy: "A new PEOPB product. Details are still being worked out.",
 		status: "In development",
 		statusClass: "text-brass bg-brass-tint",
-	},
-];
-
-const apps = [
-	{
-		name: "Guanhwɛfo",
-		copy: "Church administration, members, attendance, and governance. The backbone every other application connects to.",
-		status: "Live",
-	},
-	{
-		name: "Logos",
-		copy: "Worship and presentation: scripture, songs, and service plans.",
-		status: "Live",
-	},
-	{
-		name: "Presence",
-		copy: "The member app: check-in, giving, groups, and prayer.",
-		status: "Live",
-	},
-	{
-		name: "Steward",
-		copy: "Finance, payroll, and assets for the church.",
-		status: "Coming soon",
-	},
-	{
-		name: "Store",
-		copy: "A marketplace for church content and resources.",
-		status: "Coming soon",
 	},
 ];
 ---
@@ -76,58 +49,26 @@ const apps = [
 	<section class="border-t border-line">
 		<div class="mx-auto max-w-[900px] px-6 py-12 grid md:grid-cols-3 gap-4">
 			{productLines.map((product) => (
-				<div class="rounded-xl border border-line bg-surface p-6">
+				<div class="rounded-xl border border-line bg-surface p-6 flex flex-col">
 					<div class="flex items-center gap-2 mb-2">
 						<span class="font-semibold">{product.name}</span>
 					</div>
-					<span class={`inline-block text-[0.6875rem] font-mono uppercase tracking-wide rounded-full px-2 py-0.5 mb-3 ${product.statusClass}`}>
+					<span class={`inline-block self-start text-[0.6875rem] font-mono uppercase tracking-wide rounded-full px-2 py-0.5 mb-3 ${product.statusClass}`}>
 						{product.status}
 					</span>
-					<p class="text-sm text-slate">{product.copy}</p>
+					<p class="text-sm text-slate mb-4">{product.copy}</p>
+					{product.exploreUrl && (
+						<a
+							href={product.exploreUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="mt-auto text-sm font-medium text-indigo"
+						>
+							Explore Aseda Church Suite ↗
+						</a>
+					)}
 				</div>
 			))}
-		</div>
-	</section>
-
-	<section class="border-t border-line" id="aseda-church-suite">
-		<div class="mx-auto max-w-[900px] px-6 py-14">
-			<div class="flex flex-wrap items-baseline justify-between gap-4 mb-6">
-				<h2 class="font-display text-2xl font-medium">Aseda Church Suite</h2>
-				<a
-					href="https://asedachurchsuite.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="inline-flex items-center text-sm font-semibold rounded-md px-4 py-2 bg-ink text-fog hover:opacity-90 transition-opacity"
-				>
-					Visit asedachurchsuite.com ↗
-				</a>
-			</div>
-			<p class="text-slate max-w-[70ch] mb-4">
-				Aseda Church Suite is a complete category solution, not a single app.
-				Five applications inside it cover membership, worship, finance, and
-				community, each built to connect to a shared backbone rather than
-				operate as disconnected tools.
-			</p>
-			<div class="rounded-lg border-l-[3px] border-indigo bg-indigo-tint px-5 py-4 text-sm mb-10">
-				Guanhwɛfo is the backbone every other application connects to, not
-				one of five equal tiles.
-			</div>
-
-			<div class="grid md:grid-cols-3 gap-4">
-				{apps.map((app) => (
-					<div class={`rounded-xl border border-line p-5 bg-surface ${app.status !== "Live" ? "opacity-60" : ""}`}>
-						<div class="font-semibold text-sm mb-1.5">{app.name}</div>
-						<p class="text-sm text-slate mb-3">{app.copy}</p>
-						<span
-							class={`text-[0.6875rem] font-mono uppercase tracking-wide rounded-full px-2 py-0.5 ${
-								app.status === "Live" ? "text-live bg-live-tint" : "text-brass bg-brass-tint"
-							}`}
-						>
-							{app.status}
-						</span>
-					</div>
-				))}
-			</div>
 		</div>
 	</section>
 
