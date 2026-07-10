@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+
+const publishedPosts = await getCollection("blog", ({ data }) => !data.draft);
+
+const columns = [
+	{
+		title: "Company",
+		links: [
+			{ label: "About", href: "/about" },
+			{ label: "Careers", href: "/careers" },
+			{ label: "Contact", href: "/contact" },
+		],
+	},
+	{
+		title: "Products",
+		links: [
+			{ label: "Aseda Church Suite", href: "https://asedachurchsuite.com", external: true },
+			{ label: "BillFlow", status: "In development" },
+			{ label: "PEOPB Studio", status: "In development" },
+			{ label: "Services", href: "/services" },
+		],
+	},
+	{
+		title: "Resources",
+		links: [
+			...(publishedPosts.length > 0 ? [{ label: "Blog", href: "/blog" }] : []),
+			{ label: "Security", href: "/security" },
+		],
+	},
+	{
+		title: "Legal",
+		links: [
+			{ label: "Privacy", href: "/privacy" },
+			{ label: "Terms", href: "/terms" },
+			{ label: "Cookies", href: "/cookies" },
+		],
+	},
+];
+---
+
+<footer class="border-t border-line mt-24">
+	<div class="mx-auto max-w-[1160px] px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
+		{columns.map((col) => (
+			<div>
+				<div class="text-xs font-semibold uppercase tracking-wide text-slate mb-3">
+					{col.title}
+				</div>
+				<ul class="flex flex-col gap-2 text-sm">
+					{col.links.map((link) => (
+						<li>
+							{"href" in link && link.href ? (
+								<a
+									href={link.href}
+									class="hover:text-indigo transition-colors"
+									{...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+								>
+									{link.label}{link.external ? " ↗" : ""}
+								</a>
+							) : (
+								<span class="text-slate">
+									{link.label}
+									{link.status && (
+										<span class="ml-1.5 text-[0.6875rem] font-mono uppercase tracking-wide text-brass">
+											{link.status}
+										</span>
+									)}
+								</span>
+							)}
+						</li>
+					))}
+				</ul>
+			</div>
+		))}
+	</div>
+	<div class="border-t border-line">
+		<div class="mx-auto max-w-[1160px] px-6 py-4 font-mono text-xs text-slate">
+			PEOPB SERVICES · Reg. BN059661220 · Kwabenya, Accra, Ghana
+		</div>
+	</div>
+</footer>

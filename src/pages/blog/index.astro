@@ -1,0 +1,60 @@
+---
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout
+	title="Blog"
+	description="Notes from PEOPB on what we're building, as we build it."
+	path="/blog"
+>
+	<section class="mx-auto max-w-[900px] px-6 pt-16 pb-10">
+		<p class="font-mono text-xs uppercase tracking-wide text-brass font-semibold mb-4">
+			Blog
+		</p>
+		<h1 class="font-display text-4xl leading-[1.1] font-medium text-balance mb-4">
+			Notes as we build.
+		</h1>
+		<p class="text-lg text-slate max-w-[60ch]">
+			Posts alongside product development, not around it.
+		</p>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[900px] px-6 py-12">
+			{posts.length === 0 ? (
+				<p class="text-slate">Nothing published yet. Check back soon.</p>
+			) : (
+				<div class="grid md:grid-cols-2 gap-4">
+					{posts.map((post) => (
+						<a
+							href={`/blog/${post.id}`}
+							class="rounded-xl border border-line bg-surface p-6 hover:-translate-y-0.5 hover:shadow-md transition-[transform,box-shadow]"
+						>
+							<span class="text-[0.6875rem] font-mono uppercase tracking-wide text-indigo bg-indigo-tint rounded-full px-2 py-0.5">
+								{post.data.category}
+							</span>
+							<h2 class="font-display text-xl font-medium mt-3 mb-1.5 text-balance">
+								{post.data.title}
+							</h2>
+							<p class="text-sm text-slate mb-3">{post.data.description}</p>
+							<p class="text-xs font-mono text-slate">
+								{post.data.pubDate.toLocaleDateString("en-GB", {
+									day: "numeric",
+									month: "long",
+									year: "numeric",
+								})}
+							</p>
+						</a>
+					))}
+				</div>
+			)}
+		</div>
+	</section>
+</Layout>

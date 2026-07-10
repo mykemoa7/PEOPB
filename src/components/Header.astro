@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+
+// Blog only appears once at least one published post exists, so this
+// never needs manual toggling once founding posts go up.
+const publishedPosts = await getCollection("blog", ({ data }) => !data.draft);
+
+const navItems = [
+	{ label: "Products", href: "/products" },
+	{ label: "Services", href: "/services" },
+	{ label: "Industries", href: "/industries" },
+	{ label: "About", href: "/about" },
+	...(publishedPosts.length > 0 ? [{ label: "Blog", href: "/blog" }] : []),
+	{ label: "Careers", href: "/careers" },
+];
+---
+
+<header class="border-b border-line">
+	<div class="mx-auto max-w-[1160px] px-6 h-16 flex items-center justify-between gap-6">
+		<a href="/" class="font-display text-lg font-medium tracking-tight shrink-0">
+			PEOPB
+		</a>
+
+		<nav class="hidden md:flex items-center gap-6 text-sm text-slate">
+			{navItems.map((item) => (
+				<a href={item.href} class="hover:text-ink transition-colors">
+					{item.label}
+				</a>
+			))}
+		</nav>
+
+		<a
+			href="/contact"
+			class="text-sm font-medium border border-ink rounded-md px-3.5 py-1.5 hover:bg-ink hover:text-fog transition-colors shrink-0"
+		>
+			Contact
+		</a>
+	</div>
+</header>

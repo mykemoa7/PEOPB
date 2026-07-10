@@ -1,0 +1,119 @@
+---
+export const prerender = false;
+
+import Layout from "../../../layouts/Layout.astro";
+
+const categories = [
+	"Technology",
+	"AI",
+	"Software Engineering",
+	"Cloud",
+	"Cybersecurity",
+	"Digital Transformation",
+	"Church Technology",
+	"African Innovation",
+];
+---
+
+<Layout title="New post" description="PEOPB admin" path="/admin/posts/new">
+	<section class="mx-auto max-w-[720px] px-6 pt-16 pb-24">
+		<div class="flex items-center justify-between gap-4 mb-8">
+			<h1 class="font-display text-2xl font-medium">New post</h1>
+			<a href="/admin" class="text-sm text-slate hover:text-indigo transition-colors">
+				← Back to posts
+			</a>
+		</div>
+
+		<div id="status" class="hidden rounded-lg px-4 py-3 text-sm mb-6"></div>
+
+		<form id="post-form" class="flex flex-col gap-4">
+			<div class="flex flex-col gap-1.5">
+				<label for="title" class="text-xs font-semibold uppercase tracking-wide text-slate">Title</label>
+				<input id="title" name="title" type="text" required
+					class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-indigo" />
+			</div>
+			<div class="flex flex-col gap-1.5">
+				<label for="description" class="text-xs font-semibold uppercase tracking-wide text-slate">
+					Description
+				</label>
+				<input id="description" name="description" type="text" required
+					class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-indigo" />
+			</div>
+			<div class="flex flex-col gap-1.5">
+				<label for="category" class="text-xs font-semibold uppercase tracking-wide text-slate">Category</label>
+				<select id="category" name="category"
+					class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-indigo">
+					{categories.map((c) => <option value={c}>{c}</option>)}
+				</select>
+			</div>
+			<div class="flex flex-col gap-1.5">
+				<label for="body" class="text-xs font-semibold uppercase tracking-wide text-slate">
+					Body (Markdown)
+				</label>
+				<textarea id="body" name="body" rows="16" required
+					class="rounded-md border border-line bg-surface px-3 py-2 text-sm font-mono focus:outline-none focus:border-indigo resize-y"
+				></textarea>
+			</div>
+			<label class="flex items-center gap-2 text-sm">
+				<input id="draft" name="draft" type="checkbox" class="rounded border-line" />
+				Save as draft (won't appear on the public blog)
+			</label>
+			<button
+				type="submit"
+				id="submit-btn"
+				class="self-start inline-flex items-center text-sm font-semibold rounded-md px-5 py-2.5 bg-ink text-fog hover:opacity-90 transition-opacity"
+			>
+				Publish
+			</button>
+		</form>
+	</section>
+</Layout>
+
+<script>
+	const form = document.getElementById("post-form") as HTMLFormElement;
+	const statusBox = document.getElementById("status") as HTMLDivElement;
+	const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+
+	function showStatus(message: string, kind: "ok" | "error") {
+		statusBox.textContent = message;
+		statusBox.className =
+			"rounded-lg px-4 py-3 text-sm mb-6 " +
+			(kind === "ok"
+				? "bg-[var(--color-live-tint)] text-[var(--color-live)]"
+				: "bg-[var(--color-brass-tint)] text-[var(--color-brass)]");
+		statusBox.classList.remove("hidden");
+	}
+
+	form.addEventListener("submit", async (event) => {
+		event.preventDefault();
+		submitBtn.disabled = true;
+		submitBtn.textContent = "Publishing…";
+
+		try {
+			const response = await fetch("/api/admin/posts", {
+				method: "POST",
+				body: new FormData(form),
+			});
+			const data = await response.json();
+
+			if (!response.ok) {
+				showStatus(data.error ?? "Something went wrong.", "error");
+				submitBtn.disabled = false;
+				submitBtn.textContent = "Publish";
+				return;
+			}
+
+			showStatus(
+				"Published. It commits to GitHub directly, so it'll be live once the site finishes redeploying, usually under a minute.",
+				"ok"
+			);
+			form.reset();
+			submitBtn.textContent = "Publish";
+			submitBtn.disabled = false;
+		} catch (err) {
+			showStatus("Network error, the post was not saved.", "error");
+			submitBtn.disabled = false;
+			submitBtn.textContent = "Publish";
+		}
+	});
+</script>

@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout
+	title="About"
+	description="PEOPB is a Ghanaian technology company founded by Michael Owusu Agyekum, building software African organizations run on."
+	path="/about"
+>
+	<section class="mx-auto max-w-[720px] px-6 pt-16 pb-10">
+		<p class="font-mono text-xs uppercase tracking-wide text-brass font-semibold mb-4">
+			About
+		</p>
+		<h1 class="font-display text-4xl leading-[1.1] font-medium text-balance mb-5">
+			About PEOPB
+		</h1>
+		<p class="text-lg text-slate max-w-[60ch]">
+			We build the software and AI systems African organizations run on,
+			starting with the church.
+		</p>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-12 grid md:grid-cols-3 gap-8 items-start">
+			<div class="aspect-square rounded-xl border border-dashed border-line flex items-center justify-center font-mono text-xs text-slate">
+				Founder photo
+			</div>
+			<div class="md:col-span-2">
+				<p class="font-semibold text-lg mb-1">Michael Owusu Agyekum</p>
+				<p class="text-sm text-slate mb-4">Founder &amp; Technical Lead, Accra, Ghana</p>
+				<p class="text-slate">
+					PEOPB was registered in 2020, years before Aseda Church Suite, its
+					first product, existed. That order matters: PEOPB is a company that
+					built a product, not a product wearing a company name.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-10 flex flex-wrap gap-x-10 gap-y-4">
+			<div class="font-mono">
+				<div class="text-lg font-semibold tabular-nums">2020-12-02</div>
+				<div class="text-xs uppercase tracking-wide text-slate">Registered</div>
+			</div>
+			<div class="font-mono">
+				<div class="text-lg font-semibold tabular-nums">BN059661220</div>
+				<div class="text-xs uppercase tracking-wide text-slate">Registration no.</div>
+			</div>
+			<div class="font-mono">
+				<div class="text-lg font-semibold">Kwabenya</div>
+				<div class="text-xs uppercase tracking-wide text-slate">Accra, Ghana</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-14">
+			<h2 class="font-display text-2xl font-medium mb-4">Mission</h2>
+			<p class="text-slate mb-10 max-w-[60ch]">
+				We build the software and AI systems African organizations run on,
+				starting with the church.
+			</p>
+			<h2 class="font-display text-2xl font-medium mb-4">Vision</h2>
+			<p class="text-slate max-w-[60ch]">
+				Become the technology backbone African organizations depend on.
+			</p>
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-16 text-center">
+			<h2 class="font-display text-2xl md:text-3xl font-medium mb-6 text-balance">
+				Want to work on this with us?
+			</h2>
+			<div class="flex flex-wrap justify-center gap-3">
+				<a
+					href="/careers"
+					class="inline-flex items-center text-sm font-semibold rounded-md px-5 py-2.5 border border-line hover:border-ink transition-colors"
+				>
+					See careers
+				</a>
+				<a
+					href="/contact"
+					class="inline-flex items-center text-sm font-semibold rounded-md px-5 py-2.5 bg-ink text-fog hover:opacity-90 transition-opacity"
+				>
+					Contact us
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>

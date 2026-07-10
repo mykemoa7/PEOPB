@@ -1,0 +1,83 @@
+---
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog", ({ data }) => !data.draft);
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title} description={post.data.description} path={`/blog/${post.id}`}>
+	<article class="mx-auto max-w-[720px] px-6 pt-16 pb-16">
+		<span class="text-[0.6875rem] font-mono uppercase tracking-wide text-indigo bg-indigo-tint rounded-full px-2 py-0.5">
+			{post.data.category}
+		</span>
+		<h1 class="font-display text-3xl md:text-4xl font-medium mt-4 mb-3 text-balance">
+			{post.data.title}
+		</h1>
+		<p class="font-mono text-xs text-slate mb-10">
+			{post.data.author} ·{" "}
+			{post.data.pubDate.toLocaleDateString("en-GB", {
+				day: "numeric",
+				month: "long",
+				year: "numeric",
+			})}
+		</p>
+		<div class="prose-post">
+			<Content />
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.prose-post :global(h2) {
+		font-family: var(--font-display);
+		font-size: 1.4rem;
+		font-weight: 500;
+		margin-top: 2rem;
+		margin-bottom: 0.75rem;
+	}
+	.prose-post :global(p) {
+		margin-bottom: 1.1rem;
+		line-height: 1.7;
+	}
+	.prose-post :global(ul),
+	.prose-post :global(ol) {
+		margin-bottom: 1.1rem;
+		padding-left: 1.25rem;
+	}
+	.prose-post :global(li) {
+		margin-bottom: 0.4rem;
+	}
+	.prose-post :global(a) {
+		color: var(--color-indigo);
+	}
+	.prose-post :global(code) {
+		font-family: var(--font-mono);
+		font-size: 0.875em;
+		background: var(--color-indigo-tint);
+		padding: 0.1em 0.35em;
+		border-radius: 4px;
+	}
+	.prose-post :global(pre) {
+		overflow-x: auto;
+		padding: 1rem;
+		border-radius: 8px;
+		background: var(--color-ink);
+		color: var(--color-fog);
+		margin-bottom: 1.1rem;
+	}
+	.prose-post :global(pre code) {
+		background: none;
+		padding: 0;
+	}
+</style>

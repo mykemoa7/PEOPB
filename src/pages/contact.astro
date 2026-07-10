@@ -1,0 +1,132 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout
+	title="Contact"
+	description="Reach PEOPB for sales, support, partnerships, or media."
+	path="/contact"
+>
+	<section class="mx-auto max-w-[900px] px-6 pt-16 pb-10">
+		<p class="font-mono text-xs uppercase tracking-wide text-brass font-semibold mb-4">
+			Contact
+		</p>
+		<h1 class="font-display text-4xl leading-[1.1] font-medium text-balance mb-4">
+			Contact
+		</h1>
+		<p class="text-lg text-slate max-w-[60ch]">
+			One inbox today, sorted by what you tell us. Dedicated addresses per
+			team are on the way.
+		</p>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[900px] px-6 py-12 grid md:grid-cols-2 gap-10">
+			<form id="contact-form" class="flex flex-col gap-4 max-w-[420px]">
+				<div class="flex flex-col gap-1.5">
+					<label for="name" class="text-xs font-semibold uppercase tracking-wide text-slate">
+						Name
+					</label>
+					<input
+						id="name"
+						name="name"
+						type="text"
+						required
+						class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-indigo"
+					/>
+				</div>
+				<div class="flex flex-col gap-1.5">
+					<label for="email" class="text-xs font-semibold uppercase tracking-wide text-slate">
+						Email
+					</label>
+					<input
+						id="email"
+						name="email"
+						type="email"
+						required
+						class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-indigo"
+					/>
+				</div>
+				<div class="flex flex-col gap-1.5">
+					<label for="reason" class="text-xs font-semibold uppercase tracking-wide text-slate">
+						Reason
+					</label>
+					<select
+						id="reason"
+						name="reason"
+						class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-indigo"
+					>
+						<option>Sales</option>
+						<option>Support</option>
+						<option>Partnerships</option>
+						<option>Media</option>
+					</select>
+				</div>
+				<div class="flex flex-col gap-1.5">
+					<label for="message" class="text-xs font-semibold uppercase tracking-wide text-slate">
+						Message
+					</label>
+					<textarea
+						id="message"
+						name="message"
+						rows="5"
+						required
+						class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-indigo resize-none"
+					></textarea>
+				</div>
+				<button
+					type="submit"
+					class="self-start inline-flex items-center text-sm font-semibold rounded-md px-4 py-2.5 bg-ink text-fog hover:opacity-90 transition-opacity"
+				>
+					Send
+				</button>
+				<p class="text-xs text-slate">
+					Opens your email client with this addressed to peopbghana@gmail.com.
+				</p>
+			</form>
+
+			<div>
+				<div class="rounded-xl border border-line bg-surface p-6 mb-4">
+					<div class="text-xs font-semibold uppercase tracking-wide text-slate mb-1">
+						WhatsApp
+					</div>
+					<a href="https://wa.me/233269716672" target="_blank" rel="noopener noreferrer" class="text-indigo font-medium">
+						+233 26 971 6672
+					</a>
+				</div>
+				<div class="rounded-xl border border-line bg-surface p-6 mb-4">
+					<div class="text-xs font-semibold uppercase tracking-wide text-slate mb-1">
+						Email
+					</div>
+					<a href="mailto:peopbghana@gmail.com" class="text-indigo font-medium">
+						peopbghana@gmail.com
+					</a>
+				</div>
+				<div class="rounded-xl border border-line bg-surface p-6">
+					<div class="text-xs font-semibold uppercase tracking-wide text-slate mb-1">
+						Location
+					</div>
+					<span>Kwabenya, Accra, Ghana</span>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const form = document.getElementById("contact-form") as HTMLFormElement | null;
+	form?.addEventListener("submit", (event) => {
+		event.preventDefault();
+		const data = new FormData(form);
+		const reason = String(data.get("reason") ?? "");
+		const name = String(data.get("name") ?? "");
+		const email = String(data.get("email") ?? "");
+		const message = String(data.get("message") ?? "");
+
+		const subject = encodeURIComponent(`[${reason}] Message from ${name}`);
+		const body = encodeURIComponent(`${message}\n\n---\n${name}\n${email}`);
+		window.location.href = `mailto:peopbghana@gmail.com?subject=${subject}&body=${body}`;
+	});
+</script>

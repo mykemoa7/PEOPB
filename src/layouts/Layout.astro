@@ -1,0 +1,58 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+	title: string;
+	description: string;
+	path?: string;
+}
+
+const { title, description, path = "/" } = Astro.props;
+const canonical = new URL(path, "https://peopb.com").toString();
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title} · PEOPB</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={`${title} · PEOPB`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={`${title} · PEOPB`} />
+		<meta name="twitter:description" content={description} />
+
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			name: "PEOPB",
+			legalName: "PEOPB Services",
+			url: "https://peopb.com",
+			foundingDate: "2020-12-02",
+			address: {
+				"@type": "PostalAddress",
+				addressLocality: "Kwabenya, Accra",
+				addressCountry: "GH",
+			},
+		})} />
+	</head>
+	<body class="font-body text-ink bg-fog antialiased">
+		<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:bg-surface focus:text-ink focus:px-4 focus:py-2 focus:rounded-md focus:border focus:border-line">
+			Skip to content
+		</a>
+		<Header />
+		<main id="main">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

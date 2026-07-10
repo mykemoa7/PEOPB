@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+
+const services = [
+	{
+		name: "Technology Consulting",
+		copy: "Practical guidance on technology decisions, from architecture to tooling.",
+	},
+	{
+		name: "Software Development",
+		copy: "Custom software built and maintained by our own engineering team.",
+	},
+	{
+		name: "AI Solutions",
+		copy: "Applied AI work scoped to a specific, well-defined problem.",
+	},
+	{
+		name: "Cloud Solutions",
+		copy: "Infrastructure and deployment built to scale with your organization.",
+	},
+	{
+		name: "Digital Transformation",
+		copy: "Moving manual, paper-based operations onto software that fits how you actually work.",
+	},
+	{
+		name: "Enterprise Systems",
+		copy: "Systems that connect an organization's operations in one place.",
+	},
+	{
+		name: "Custom Applications",
+		copy: "Purpose-built software for a problem no off-the-shelf tool solves.",
+	},
+];
+---
+
+<Layout
+	title="Services"
+	description="Technology consulting, software development, and enterprise systems from PEOPB."
+	path="/services"
+>
+	<section class="mx-auto max-w-[900px] px-6 pt-16 pb-10">
+		<p class="font-mono text-xs uppercase tracking-wide text-brass font-semibold mb-4">
+			Services
+		</p>
+		<h1 class="font-display text-4xl leading-[1.1] font-medium text-balance mb-4">
+			Work scoped to your organization, not a package.
+		</h1>
+		<p class="text-lg text-slate max-w-[60ch]">
+			Engagements are enterprise and B2B, scoped and priced per project rather
+			than sold off a price list.
+		</p>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[900px] px-6 py-12 grid md:grid-cols-2 gap-4">
+			{services.map((service) => (
+				<div class="rounded-xl border border-line bg-surface p-6">
+					<div class="font-semibold mb-1.5">{service.name}</div>
+					<p class="text-sm text-slate">{service.copy}</p>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[900px] px-6 py-16 text-center">
+			<h2 class="font-display text-2xl md:text-3xl font-medium mb-6 text-balance">
+				Tell us what you're trying to build.
+			</h2>
+			<a
+				href="/contact"
+				class="inline-flex items-center text-sm font-semibold rounded-md px-5 py-2.5 bg-ink text-fog hover:opacity-90 transition-opacity"
+			>
+				Talk to Sales
+			</a>
+		</div>
+	</section>
+</Layout>

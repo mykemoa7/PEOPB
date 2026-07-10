@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+
+const stats = [
+	{ value: "2020", label: "Registered" },
+	{ value: "Accra", label: "Ghana" },
+	{ value: "1 of 3", label: "Products live" },
+];
+
+const services = [
+	{
+		name: "Software Development",
+		copy: "Custom software built and maintained by our own engineering team.",
+	},
+	{
+		name: "Cloud Solutions",
+		copy: "Infrastructure and deployment built to scale with your organization.",
+	},
+	{
+		name: "Enterprise Systems",
+		copy: "Systems that connect an organization's operations in one place.",
+	},
+];
+---
+
+<Layout
+	title="Home"
+	description="PEOPB builds the software African organizations run on, starting with Aseda Church Suite."
+	path="/"
+>
+	<section class="mx-auto max-w-[720px] px-6 pt-16 pb-14">
+		<p class="font-mono text-xs uppercase tracking-wide text-brass font-semibold mb-4">
+			PEOPB · Accra, Ghana
+		</p>
+		<h1 class="font-display text-4xl md:text-5xl leading-[1.08] font-medium text-balance mb-5">
+			We build the software African organizations run on.
+		</h1>
+		<p class="text-lg text-slate max-w-[56ch] mb-8">
+			Proven first in the church, with Aseda Church Suite, live today. Two more
+			products, BillFlow and PEOPB Studio, are already in development.
+		</p>
+		<div class="flex flex-wrap gap-3">
+			<a
+				href="/products#aseda-church-suite"
+				class="inline-flex items-center text-sm font-semibold rounded-md px-4 py-2.5 bg-ink text-fog hover:opacity-90 transition-opacity"
+			>
+				Explore Aseda Church Suite
+			</a>
+			<a
+				href="/contact"
+				class="inline-flex items-center text-sm font-semibold rounded-md px-4 py-2.5 border border-line hover:border-ink transition-colors"
+			>
+				Talk to us
+			</a>
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-8 flex flex-wrap gap-x-10 gap-y-4">
+			{stats.map((stat) => (
+				<div class="font-mono">
+					<div class="text-xl font-semibold tabular-nums">{stat.value}</div>
+					<div class="text-xs uppercase tracking-wide text-slate">{stat.label}</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-14">
+			<div class="grid md:grid-cols-3 gap-4">
+				<a
+					href="/products#aseda-church-suite"
+					class="md:col-span-2 rounded-xl border border-line bg-surface p-6 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-[transform,box-shadow]"
+				>
+					<div class="flex items-center gap-2 mb-2">
+						<span class="font-semibold">Aseda Church Suite</span>
+						<span class="text-[0.6875rem] font-mono uppercase tracking-wide text-live bg-live-tint rounded-full px-2 py-0.5">
+							Live
+						</span>
+					</div>
+					<p class="text-sm text-slate mb-3">
+						The operating system for the modern church, membership, worship,
+						finance, and community in one suite.
+					</p>
+					<span class="text-sm font-medium text-indigo">See the Suite →</span>
+				</a>
+				<div class="rounded-xl border border-dashed border-line p-6 flex items-center">
+					<p class="text-sm text-slate">
+						Church administration, worship presentation, and member
+						engagement, built as one connected system.
+					</p>
+				</div>
+			</div>
+			<a href="/products" class="inline-block mt-4 text-sm text-slate hover:text-indigo transition-colors">
+				+ 2 more products in development →
+			</a>
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-14">
+			<h2 class="font-display text-2xl font-medium mb-6">Services</h2>
+			<div class="grid md:grid-cols-3 gap-4 mb-5">
+				{services.map((service) => (
+					<div class="rounded-xl border border-line bg-surface p-5">
+						<div class="font-semibold text-sm mb-1.5">{service.name}</div>
+						<p class="text-sm text-slate">{service.copy}</p>
+					</div>
+				))}
+			</div>
+			<a href="/services" class="text-sm font-medium text-indigo">
+				See all services →
+			</a>
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-14 grid md:grid-cols-2 gap-8 items-center">
+			<div class="aspect-[4/3] rounded-xl border border-dashed border-line flex items-center justify-center font-mono text-xs text-slate">
+				Founder photo
+			</div>
+			<div>
+				<p class="font-semibold mb-1">Michael Owusu Agyekum</p>
+				<p class="text-sm text-slate mb-4">Founder &amp; Technical Lead, Accra</p>
+				<p class="text-sm text-slate mb-4">
+					PEOPB was registered in 2020, years before its first product
+					shipped. We build for the long term, not the launch.
+				</p>
+				<a href="/about" class="text-sm font-medium text-indigo">
+					Read our story →
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-16 text-center">
+			<h2 class="font-display text-2xl md:text-3xl font-medium mb-6 text-balance">
+				Building something for your organization?
+			</h2>
+			<a
+				href="/contact"
+				class="inline-flex items-center text-sm font-semibold rounded-md px-5 py-2.5 bg-ink text-fog hover:opacity-90 transition-opacity"
+			>
+				Contact us
+			</a>
+		</div>
+	</section>
+</Layout>

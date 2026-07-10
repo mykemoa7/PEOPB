@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+
+const principles = [
+	{
+		name: "Depth over breadth",
+		copy: "We'd rather build one thing well than five things half-finished.",
+	},
+	{
+		name: "Proof before promise",
+		copy: "We don't launch what isn't ready, and we don't say we've shipped what we haven't.",
+	},
+	{
+		name: "Built for twenty years, not twenty months",
+		copy: "Decisions here are made for the long term, including how we hire.",
+	},
+	{
+		name: "Say only what is shipped",
+		copy: "If it can't be checked against the product or the registration documents, it doesn't go on the site, or in a job description.",
+	},
+];
+---
+
+<Layout
+	title="Careers"
+	description="PEOPB is not actively hiring right now, but we're building the bench for when we are."
+	path="/careers"
+>
+	<section class="mx-auto max-w-[720px] px-6 pt-16 pb-10">
+		<p class="font-mono text-xs uppercase tracking-wide text-brass font-semibold mb-4">
+			Careers
+		</p>
+		<h1 class="font-display text-4xl leading-[1.1] font-medium text-balance mb-5">
+			Careers
+		</h1>
+		<div class="rounded-lg border-l-[3px] border-brass bg-brass-tint px-5 py-4 text-sm max-w-[60ch]">
+			We're not actively hiring right now. We'd rather tell you that directly
+			than run listings for roles that don't exist yet.
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-14">
+			<h2 class="font-display text-2xl font-medium mb-6">How we work</h2>
+			<div class="grid md:grid-cols-2 gap-4">
+				{principles.map((principle) => (
+					<div class="rounded-xl border border-line bg-surface p-5">
+						<div class="font-semibold text-sm mb-1.5">{principle.name}</div>
+						<p class="text-sm text-slate">{principle.copy}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[720px] px-6 py-16 text-center">
+			<h2 class="font-display text-2xl md:text-3xl font-medium mb-4 text-balance">
+				Interested in an internship?
+			</h2>
+			<p class="text-slate mb-6 max-w-[50ch] mx-auto">
+				Tell us what you're interested in and we'll keep you in mind as roles
+				open up.
+			</p>
+			<a
+				href="mailto:peopbghana@gmail.com?subject=Internship%20interest"
+				class="inline-flex items-center text-sm font-semibold rounded-md px-5 py-2.5 bg-ink text-fog hover:opacity-90 transition-opacity"
+			>
+				Email us about internships
+			</a>
+		</div>
+	</section>
+</Layout>
