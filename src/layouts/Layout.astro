@@ -7,9 +7,10 @@ interface Props {
 	title: string;
 	description: string;
 	path?: string;
+	noindex?: boolean;
 }
 
-const { title, description, path = "/" } = Astro.props;
+const { title, description, path = "/", noindex = false } = Astro.props;
 const canonical = new URL(path, "https://peopb.com").toString();
 ---
 
@@ -22,6 +23,7 @@ const canonical = new URL(path, "https://peopb.com").toString();
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={`${title} · PEOPB`} />

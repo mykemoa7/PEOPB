@@ -9,7 +9,7 @@ const posts = (await getCollection("blog")).sort(
 );
 ---
 
-<Layout title="Admin" description="PEOPB admin" path="/admin">
+<Layout title="Admin" description="PEOPB admin" path="/admin" noindex>
 	<section class="mx-auto max-w-[900px] px-6 pt-16 pb-10">
 		<div class="flex items-center justify-between gap-4 mb-8">
 			<h1 class="font-display text-2xl font-medium">Posts</h1>

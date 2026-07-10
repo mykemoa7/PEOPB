@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin
+Disallow: /api
+
+Sitemap: https://peopb.com/sitemap-index.xml
