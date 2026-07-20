@@ -22,16 +22,20 @@ const canonical = new URL(path, "https://peopb.com").toString();
 		<title>{title} · PEOPB</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={`${title} · PEOPB`} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content="https://peopb.com/logo.png" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={`${title} · PEOPB`} />
 		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="https://peopb.com/logo.png" />
 
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
@@ -39,6 +43,7 @@ const canonical = new URL(path, "https://peopb.com").toString();
 			name: "PEOPB",
 			legalName: "PEOPB Services",
 			url: "https://peopb.com",
+			logo: "https://peopb.com/logo.png",
 			foundingDate: "2020-12-02",
 			address: {
 				"@type": "PostalAddress",
