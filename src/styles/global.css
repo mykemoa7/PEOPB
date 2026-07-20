@@ -1,18 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #14161c;
-  --color-fog: #eef0f2;
+  --color-ink: #04191c;
+  --color-fog: #f2f6f5;
   --color-surface: #ffffff;
-  --color-indigo: #2c3968;
-  --color-indigo-deep: #1b2547;
-  --color-indigo-tint: #e4e7f2;
-  --color-brass: #a5822c;
-  --color-brass-tint: #f2e8d2;
-  --color-slate: #5b6270;
-  --color-line: #d7dae0;
+  --color-teal: #042b30;
+  --color-teal-deep: #032226;
+  --color-teal-tint: #e9f5f6;
+  --color-gold: #f4b915;
+  --color-gold-tint: #f6f0df;
+  --color-slate: #4d5c5e;
+  --color-line: #cfdbdb;
   --color-live: #2f7d5c;
   --color-live-tint: #dcefe6;
+
+  /* Fixed, non-theme-adaptive accent block: gold reads well against both a
+     light and a dark page background, unlike --color-teal, which has to
+     invert per-theme for text legibility and would look wrong as a
+     full-section fill. Reserved for the one deliberate color moment per
+     page, not for general use. */
+  --color-block-bg: #f4b915;
+  --color-block-fg: #032226;
 
   --font-display: ui-serif, "Iowan Old Style", Georgia, "Times New Roman", serif;
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -21,47 +29,47 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-ink: #eceef2;
-    --color-fog: #0d0f14;
-    --color-surface: #161923;
-    --color-indigo: #8b9aea;
-    --color-indigo-deep: #b7c1f2;
-    --color-indigo-tint: #212a49;
-    --color-brass: #dcb765;
-    --color-brass-tint: #362c15;
-    --color-slate: #9aa1b0;
-    --color-line: #2a2e3a;
+    --color-ink: #eaf3f2;
+    --color-fog: #071617;
+    --color-surface: #0f2224;
+    --color-teal: #4cddf0;
+    --color-teal-deep: #89e9f5;
+    --color-teal-tint: #14393e;
+    --color-gold: #f6c53c;
+    --color-gold-tint: #473a15;
+    --color-slate: #93a8a8;
+    --color-line: #1f3a3d;
     --color-live: #59c199;
     --color-live-tint: #123328;
   }
 }
 
 :root[data-theme="dark"] {
-  --color-ink: #eceef2;
-  --color-fog: #0d0f14;
-  --color-surface: #161923;
-  --color-indigo: #8b9aea;
-  --color-indigo-deep: #b7c1f2;
-  --color-indigo-tint: #212a49;
-  --color-brass: #dcb765;
-  --color-brass-tint: #362c15;
-  --color-slate: #9aa1b0;
-  --color-line: #2a2e3a;
+  --color-ink: #eaf3f2;
+  --color-fog: #071617;
+  --color-surface: #0f2224;
+  --color-teal: #4cddf0;
+  --color-teal-deep: #89e9f5;
+  --color-teal-tint: #14393e;
+  --color-gold: #f6c53c;
+  --color-gold-tint: #473a15;
+  --color-slate: #93a8a8;
+  --color-line: #1f3a3d;
   --color-live: #59c199;
   --color-live-tint: #123328;
 }
 
 :root[data-theme="light"] {
-  --color-ink: #14161c;
-  --color-fog: #eef0f2;
+  --color-ink: #04191c;
+  --color-fog: #f2f6f5;
   --color-surface: #ffffff;
-  --color-indigo: #2c3968;
-  --color-indigo-deep: #1b2547;
-  --color-indigo-tint: #e4e7f2;
-  --color-brass: #a5822c;
-  --color-brass-tint: #f2e8d2;
-  --color-slate: #5b6270;
-  --color-line: #d7dae0;
+  --color-teal: #042b30;
+  --color-teal-deep: #032226;
+  --color-teal-tint: #e9f5f6;
+  --color-gold: #f4b915;
+  --color-gold-tint: #f6f0df;
+  --color-slate: #4d5c5e;
+  --color-line: #cfdbdb;
   --color-live: #2f7d5c;
   --color-live-tint: #dcefe6;
 }
@@ -73,13 +81,13 @@ body {
 }
 
 ::selection {
-  background: var(--color-indigo-tint);
-  color: var(--color-indigo-deep);
+  background: var(--color-teal-tint);
+  color: var(--color-teal-deep);
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-indigo);
+  outline: 2px solid var(--color-teal);
   outline-offset: 3px;
   border-radius: 3px;
 }

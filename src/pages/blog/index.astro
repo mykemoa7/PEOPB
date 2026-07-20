@@ -15,7 +15,7 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 	path="/blog"
 >
 	<section class="mx-auto max-w-[900px] px-6 pt-16 pb-10">
-		<p class="font-mono text-xs uppercase tracking-wide text-brass font-semibold mb-4">
+		<p class="font-mono text-xs uppercase tracking-wide text-gold font-semibold mb-4">
 			Blog
 		</p>
 		<h1 class="font-display text-4xl leading-[1.1] font-medium text-balance mb-4">
@@ -37,7 +37,7 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 							href={`/blog/${post.id}`}
 							class="rounded-xl border border-line bg-surface p-6 hover:-translate-y-0.5 hover:shadow-md transition-[transform,box-shadow]"
 						>
-							<span class="text-[0.6875rem] font-mono uppercase tracking-wide text-indigo bg-indigo-tint rounded-full px-2 py-0.5">
+							<span class="text-[0.6875rem] font-mono uppercase tracking-wide text-teal bg-teal-tint rounded-full px-2 py-0.5">
 								{post.data.category}
 							</span>
 							<h2 class="font-display text-xl font-medium mt-3 mb-1.5 text-balance">

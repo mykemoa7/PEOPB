@@ -10,7 +10,7 @@ const error = Astro.url.searchParams.get("error");
 	<section class="mx-auto max-w-[380px] px-6 pt-24 pb-24">
 		<h1 class="font-display text-2xl font-medium mb-6">Admin login</h1>
 		{error && (
-			<div class="rounded-lg border-l-[3px] border-brass bg-brass-tint px-4 py-3 text-sm mb-6">
+			<div class="rounded-lg border-l-[3px] border-gold bg-gold-tint px-4 py-3 text-sm mb-6">
 				Wrong password. Try again.
 			</div>
 		)}
@@ -25,7 +25,7 @@ const error = Astro.url.searchParams.get("error");
 					type="password"
 					required
 					autofocus
-					class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-indigo"
+					class="rounded-md border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:border-teal"
 				/>
 			</div>
 			<button
