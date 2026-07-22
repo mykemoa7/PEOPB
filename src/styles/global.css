@@ -14,6 +14,13 @@
   --color-live: #2f7d5c;
   --color-live-tint: #dcefe6;
 
+  /* Text-safe gold: --color-gold as text on the light fog/surface/gold-tint
+     backgrounds fails WCAG AA (~1.6:1). This darkened variant clears 4.5:1
+     against all three and is what eyebrow labels and status badges should
+     use for text; --color-gold itself stays reserved for borders, badge
+     fills, and the block accent below. */
+  --color-gold-text: #7f6106;
+
   /* Fixed, non-theme-adaptive accent block: gold reads well against both a
      light and a dark page background, unlike --color-teal, which has to
      invert per-theme for text legibility and would look wrong as a
@@ -37,6 +44,7 @@
     --color-teal-tint: #14393e;
     --color-gold: #f6c53c;
     --color-gold-tint: #473a15;
+    --color-gold-text: #f6c53c;
     --color-slate: #93a8a8;
     --color-line: #1f3a3d;
     --color-live: #59c199;
@@ -53,6 +61,7 @@
   --color-teal-tint: #14393e;
   --color-gold: #f6c53c;
   --color-gold-tint: #473a15;
+  --color-gold-text: #f6c53c;
   --color-slate: #93a8a8;
   --color-line: #1f3a3d;
   --color-live: #59c199;
@@ -68,6 +77,7 @@
   --color-teal-tint: #e9f5f6;
   --color-gold: #f4b915;
   --color-gold-tint: #f6f0df;
+  --color-gold-text: #7f6106;
   --color-slate: #4d5c5e;
   --color-line: #cfdbdb;
   --color-live: #2f7d5c;
