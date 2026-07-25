@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout
+	title="Page not found"
+	description="This page doesn't exist."
+	path="/404"
+	noindex
+>
+	<section class="mx-auto max-w-[720px] px-6 pt-24 pb-24 text-center">
+		<p class="font-mono text-xs uppercase tracking-wide text-gold-text font-semibold mb-4">
+			404
+		</p>
+		<h1 class="font-display text-4xl leading-[1.1] font-medium text-balance mb-5">
+			This page doesn't exist.
+		</h1>
+		<p class="text-lg text-slate max-w-[50ch] mx-auto mb-10">
+			The link may be old, or the page may have moved. Here's where to go instead.
+		</p>
+		<div class="flex flex-wrap justify-center gap-3">
+			<a
+				href="/"
+				class="inline-flex items-center text-sm font-semibold rounded-md px-5 py-2.5 bg-ink text-fog hover:opacity-90 transition-opacity"
+			>
+				Go home
+			</a>
+			<a
+				href="/contact"
+				class="inline-flex items-center text-sm font-semibold rounded-md px-5 py-2.5 border border-line hover:border-ink transition-colors"
+			>
+				Contact us
+			</a>
+		</div>
+	</section>
+</Layout>

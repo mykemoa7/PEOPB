@@ -11,7 +11,9 @@ const error = Astro.url.searchParams.get("error");
 		<h1 class="font-display text-2xl font-medium mb-6">Admin login</h1>
 		{error && (
 			<div class="rounded-lg border-l-[3px] border-gold bg-gold-tint px-4 py-3 text-sm mb-6">
-				Wrong password. Try again.
+				{error === "2"
+					? "Too many attempts. Wait 15 minutes and try again."
+					: "Wrong password. Try again."}
 			</div>
 		)}
 		<form method="POST" action="/api/admin/login" class="flex flex-col gap-4">
