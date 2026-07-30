@@ -23,22 +23,39 @@ export const prerender = true;
 	</section>
 
 	<section class="border-t border-line">
-		<div class="mx-auto max-w-[720px] px-6 py-12 grid md:grid-cols-3 gap-8 items-start">
-			<img
-				src="/images/founder.jpg"
-				alt="Michael Owusu Agyekum, Founder & Technical Lead at PEOPB"
-				width="800"
-				height="800"
-				class="aspect-square rounded-xl border border-line object-cover w-full"
-			/>
-			<div class="md:col-span-2">
-				<p class="font-semibold text-lg mb-1">Michael Owusu Agyekum</p>
-				<p class="text-sm text-slate mb-4">Founder &amp; Technical Lead, Accra, Ghana</p>
-				<p class="text-slate">
-					PEOPB was registered in 2020, years before Aseda Church Suite, its
-					first product, existed. That order matters: PEOPB is a company that
-					built a product, not a product wearing a company name.
-				</p>
+		<div class="mx-auto max-w-[900px] px-6 py-12">
+			<p class="font-mono text-xs uppercase tracking-wide text-gold-text font-semibold mb-4">
+				Team
+			</p>
+			<h2 class="font-display text-2xl md:text-3xl font-medium mb-4">
+				Meet the team
+			</h2>
+			<p class="text-slate max-w-[60ch] mb-8">
+				PEOPB was registered in 2020, years before Aseda Church Suite, its
+				first product, existed. That order matters: PEOPB is a company that
+				built a product, not a product wearing a company name.
+			</p>
+			<div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+				<div>
+					<img
+						src="/images/founder.jpg"
+						alt="Michael Owusu Agyekum, Founder & Technical Lead at PEOPB"
+						width="400"
+						height="400"
+						class="aspect-square rounded-xl border border-line object-cover w-full mb-3"
+					/>
+					<p class="font-semibold text-sm mb-0.5">Michael Owusu Agyekum</p>
+					<p class="text-xs text-slate">Founder &amp; Technical Lead</p>
+				</div>
+				{[1, 2, 3].map(() => (
+					<div>
+						<div class="aspect-square rounded-xl border border-dashed border-line flex items-center justify-center font-mono text-xs text-slate mb-3">
+							Team photo
+						</div>
+						<p class="font-semibold text-sm mb-0.5 text-slate">Name</p>
+						<p class="text-xs text-slate">Role</p>
+					</div>
+				))}
 			</div>
 		</div>
 	</section>
