@@ -118,25 +118,38 @@ const services = [
 	</section>
 
 	<section class="border-t border-line">
-		<div class="mx-auto max-w-[720px] px-6 py-14 grid md:grid-cols-2 gap-8 items-center">
-			<img
-				src="/images/founder.jpg"
-				alt="Michael Owusu Agyekum, Founder & Technical Lead at PEOPB"
-				width="800"
-				height="800"
-				class="aspect-[4/3] rounded-xl border border-line object-cover w-full"
-			/>
-			<div>
-				<p class="font-semibold mb-1">Michael Owusu Agyekum</p>
-				<p class="text-sm text-slate mb-4">Founder &amp; Technical Lead, Accra</p>
-				<p class="text-sm text-slate mb-4">
-					PEOPB was registered in 2020, years before its first product
-					shipped. We build for the long term, not the launch.
-				</p>
-				<a href="/about" class="text-sm font-medium text-teal">
-					Read our story →
-				</a>
+		<div class="mx-auto max-w-[900px] px-6 py-14">
+			<p class="font-mono text-xs uppercase tracking-wide text-gold-text font-semibold mb-4">
+				Team
+			</p>
+			<h2 class="font-display text-2xl md:text-3xl font-medium mb-8">
+				Meet the team
+			</h2>
+			<div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+				<div>
+					<img
+						src="/images/founder.jpg"
+						alt="Michael Owusu Agyekum, Founder & Technical Lead at PEOPB"
+						width="400"
+						height="400"
+						class="aspect-square rounded-xl border border-line object-cover w-full mb-3"
+					/>
+					<p class="font-semibold text-sm mb-0.5">Michael Owusu Agyekum</p>
+					<p class="text-xs text-slate">Founder &amp; Technical Lead</p>
+				</div>
+				{[1, 2, 3].map(() => (
+					<div>
+						<div class="aspect-square rounded-xl border border-dashed border-line flex items-center justify-center font-mono text-xs text-slate mb-3">
+							Team photo
+						</div>
+						<p class="font-semibold text-sm mb-0.5 text-slate">Name</p>
+						<p class="text-xs text-slate">Role</p>
+					</div>
+				))}
 			</div>
+			<a href="/about" class="text-sm font-medium text-teal">
+				Read our story →
+			</a>
 		</div>
 	</section>
 
