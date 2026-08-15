@@ -49,7 +49,7 @@ const productLines = [
 	<section class="border-t border-line">
 		<div class="mx-auto max-w-[900px] px-6 py-12 grid md:grid-cols-3 gap-4">
 			{productLines.map((product) => (
-				<div class="rounded-xl border border-line bg-surface p-6 flex flex-col">
+				<div class={`rounded-xl border border-line p-6 flex flex-col ${product.status === "Live" ? "bg-teal-tint" : "bg-surface"}`}>
 					<div class="flex items-center gap-2 mb-2">
 						<span class="font-semibold">{product.name}</span>
 					</div>
