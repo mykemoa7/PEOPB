@@ -33,6 +33,14 @@ const services = [
 		copy: "Brand identity, web design, and digital marketing, independent of any software engagement.",
 	},
 ];
+
+const work = [
+	{
+		name: "Destiny Carriers Ministry",
+		copy: "Full website design and build for a church in Accra: home, leadership, ministries, blog, and giving in one site.",
+		url: "https://destinycarriersministry.org",
+	},
+];
 ---
 
 <Layout
@@ -61,6 +69,30 @@ const services = [
 					<p class="text-sm text-slate">{service.copy}</p>
 				</div>
 			))}
+		</div>
+	</section>
+
+	<section class="border-t border-line">
+		<div class="mx-auto max-w-[900px] px-6 py-12">
+			<h2 class="font-display text-2xl font-medium mb-6">
+				Client work
+			</h2>
+			<div class="grid md:grid-cols-2 gap-4">
+				{work.map((project) => (
+					<div class="rounded-xl border border-line bg-surface p-6">
+						<div class="font-semibold mb-1.5">{project.name}</div>
+						<p class="text-sm text-slate mb-3">{project.copy}</p>
+						<a
+							href={project.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-sm font-medium text-teal"
+						>
+							Visit site ↗
+						</a>
+					</div>
+				))}
+			</div>
 		</div>
 	</section>
 
