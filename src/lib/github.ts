@@ -37,6 +37,39 @@ function toFrontmatterYaml(fm: PublishPostInput["frontmatter"]): string {
 	].join("\n");
 }
 
+export async function deletePost(slug: string): Promise<PublishResult> {
+	const token = requireEnv("GITHUB_TOKEN");
+	const repo = requireEnv("GITHUB_REPO");
+	const branch = import.meta.env.GITHUB_BRANCH || "main";
+
+	const path = `src/content/blog/${slug}.md`;
+	const apiUrl = `https://api.github.com/repos/${repo}/contents/${path}`;
+	const headers = {
+		Authorization: `Bearer ${token}`,
+		Accept: "application/vnd.github+json",
+		"Content-Type": "application/json",
+	};
+
+	const existing = await fetch(`${apiUrl}?ref=${branch}`, { headers });
+	if (!existing.ok) {
+		return { ok: false, error: `Post not found (${existing.status})` };
+	}
+	const { sha } = (await existing.json()) as { sha: string };
+
+	const response = await fetch(apiUrl, {
+		method: "DELETE",
+		headers,
+		body: JSON.stringify({ message: `Delete post: ${slug}`, sha, branch }),
+	});
+
+	if (!response.ok) {
+		const body = await response.text();
+		return { ok: false, error: `GitHub API error (${response.status}): ${body}` };
+	}
+
+	return { ok: true };
+}
+
 export async function publishPost(input: PublishPostInput): Promise<PublishResult> {
 	const token = requireEnv("GITHUB_TOKEN");
 	const repo = requireEnv("GITHUB_REPO"); // "owner/repo"

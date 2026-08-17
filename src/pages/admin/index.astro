@@ -48,16 +48,64 @@ const posts = (await getCollection("blog")).sort(
 								})}
 							</div>
 						</div>
-						<span
-							class={`text-[0.6875rem] font-mono uppercase tracking-wide rounded-full px-2 py-0.5 shrink-0 ${
-								post.data.draft ? "text-gold-text bg-gold-tint" : "text-live bg-live-tint"
-							}`}
-						>
-							{post.data.draft ? "Draft" : "Published"}
-						</span>
+						<div class="flex items-center gap-3 shrink-0">
+							<span
+								class={`text-[0.6875rem] font-mono uppercase tracking-wide rounded-full px-2 py-0.5 ${
+									post.data.draft ? "text-gold-text bg-gold-tint" : "text-live bg-live-tint"
+								}`}
+							>
+								{post.data.draft ? "Draft" : "Published"}
+							</span>
+							<a
+								href={`/admin/posts/edit/${post.id}`}
+								class="text-sm font-medium text-teal hover:underline"
+							>
+								Edit
+							</a>
+							<button
+								type="button"
+								class="delete-btn text-sm font-medium text-slate hover:text-[var(--color-gold)] transition-colors"
+								data-slug={post.id}
+								data-title={post.data.title}
+							>
+								Delete
+							</button>
+						</div>
 					</div>
 				))}
 			</div>
 		)}
 	</section>
 </Layout>
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>(".delete-btn").forEach((btn) => {
+		btn.addEventListener("click", async () => {
+			const slug = btn.dataset.slug;
+			const title = btn.dataset.title;
+			if (!slug) return;
+			if (!confirm(`Delete "${title}"? This can't be undone.`)) return;
+
+			btn.disabled = true;
+			btn.textContent = "Deleting…";
+
+			try {
+				const response = await fetch(`/api/admin/posts?slug=${encodeURIComponent(slug)}`, {
+					method: "DELETE",
+				});
+				if (!response.ok) {
+					const data = await response.json();
+					alert(data.error ?? "Something went wrong.");
+					btn.disabled = false;
+					btn.textContent = "Delete";
+					return;
+				}
+				location.reload();
+			} catch {
+				alert("Network error, the post was not deleted.");
+				btn.disabled = false;
+				btn.textContent = "Delete";
+			}
+		});
+	});
+</script>
